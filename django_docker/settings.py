@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'upload',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,22 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://3.37.196.22:8080'
+]
+
+STORAGES = {
+  "default": {
+    "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+  },
+  "staticfiles": {
+    "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+  },
+}
+
+AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME=os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME=os.getenv('AWS_S3_REGION_NAME')
+AWS_S3_SIGNATURE_VERSION = 's3v4'

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image View</title>
+</head>
+<body>
+    {% for image in images %}
+        <p>{{ image.title }}</p>
+        <img src="{{ image.get_presigned_url }}" width="300"/>
+    {% endfor %}
+</body>
+</html>
